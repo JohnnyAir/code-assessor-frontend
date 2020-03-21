@@ -1,0 +1,78 @@
+.sidebar {
+  width: 5%;
+  height: 100%;
+  background: #333d49;
+}
+
+.header-section nav {
+  background-color: #38424e;
+}
+
+main.exb {
+  height: calc(100% - 53px);
+  display: flex;
+}
+
+.question-descr {
+  background: #efefef;
+  width: 25%;
+}
+
+.question-numbers {
+  color: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.question-numbers li.number {
+  cursor: pointer;
+}
+
+.question-numbers li.number:hover {
+  background: #404a56;
+}
+
+.question-numbers li.selected {
+  background: #556577;
+  color: #67ffea;
+}
+
+.question-numbers li {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+li ._number {
+  font-size: 1.4rem;
+}
+
+span.selected-indicator {
+  display: none;
+  float: right;
+  position: absolute;
+  top: 15px;
+  background: 0 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 12px solid #fff;
+  border-right: 12px solid #efefef;
+  left: 56px;
+}
+
+.number.selected span.selected-indicator {
+  display: block;
+}
+
+.code-area {
+  width: 70%;
+  padding: 15px;
+}

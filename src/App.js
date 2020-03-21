@@ -1,7 +1,8 @@
 import React from "react";
+import Assessor from "./pages/Assement";
 
 function App() {
-  return <div className="App"></div>;
+  return <Assessor />;
 }
 
 export default App;

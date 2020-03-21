@@ -1,0 +1,11 @@
+/* general app css goes here */
+
+body,
+html,
+#app-root {
+  height: 100%;
+}
+
+.CodeMirror {
+  height: 100%;
+}
