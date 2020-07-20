@@ -2,17 +2,29 @@ import React, { useEffect, createRef } from "react";
 import CodeMirror from "codemirror";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/mode/clike/clike";
+import "codemirror/addon/edit/closebrackets";
+
+let codeEditor = null;
 
 function Editor({ mode, theme, defaultValue }) {
   const textArea = createRef();
   useEffect(() => {
-    window.CodeMirror = CodeMirror.fromTextArea(textArea.current, {
+    codeEditor = CodeMirror.fromTextArea(textArea.current, {
       mode: mode || { name: "text/x-java" },
       theme: theme || "default",
-      lineNumbers: true
+      lineNumbers: true,
+      autofocus: true,
+      autoCloseBrackets: true
     });
+    window.CodeMirror = codeEditor;
   });
-  return <textarea ref={textArea} defaultValue={defaultValue} />;
+  return (
+    <textarea
+      ref={textArea}
+      defaultValue={defaultValue || "//Write your code here \n"}
+    />
+  );
 }
 
+export { codeEditor };
 export default Editor;
