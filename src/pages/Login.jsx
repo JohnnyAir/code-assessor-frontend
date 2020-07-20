@@ -3,7 +3,6 @@ import { Row, FormGroup, Input, Button } from "reactstrap";
 
 import "../styles/Login.css";
 import bg from "../assets/images/login-bg2.jpg";
-import LoaderIcon from "../assets/svg/Loader";
 
 function Login() {
   const [authenticating, isAuthenticating] = useState(false);
@@ -51,7 +50,6 @@ function Login() {
             <Row>
               <Button color="success" type="submit">
                 {!authenticating ? "Login" : "Please wait"}
-                {authenticating && <LoaderIcon width="40px" height="18px" />}
               </Button>
             </Row>
           </form>

@@ -3,7 +3,7 @@ import Assessor from "./pages/Assement";
 import Login from "./pages/Login";
 
 function App() {
-  return <Login />;
+  return <Assessor />;
 }
 
 export default App;
