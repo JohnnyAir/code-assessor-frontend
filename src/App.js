@@ -1,9 +1,17 @@
 import React from "react";
-import Assessor from "./pages/Assement";
-// import Login from "./pages/Login";
+import Test from "./pages/Test";
+import Admin from "./pages/Admin";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 
 function App() {
-  return <Assessor />;
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Test} />
+        <Route path="/admin" component={Admin} />
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;

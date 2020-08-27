@@ -12,11 +12,10 @@ function Editor({ mode, theme, defaultValue }) {
     codeEditor = CodeMirror.fromTextArea(textArea.current, {
       mode: mode || { name: "text/x-java" },
       theme: theme || "default",
-      lineNumbers: true,
+      lineNumbers: false,
       autofocus: true,
       autoCloseBrackets: true
     });
-    window.CodeMirror = codeEditor;
   });
   return (
     <textarea
