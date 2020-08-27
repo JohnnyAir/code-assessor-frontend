@@ -1,0 +1,171 @@
+header.header {
+  display: flex;
+  height: 45px;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddddd;
+}
+
+header.header > div {
+  flex: 1;
+}
+
+.timer {
+  font-size: 1.4em;
+  text-align: center;
+  align-self: center;
+}
+
+header .actions-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* 
+header .actions-buttons button i{
+  background-color: rgb(26 188 181 / 16%);
+} */
+
+
+
+
+
+
+
+.sidebar {
+  width:3%;
+  height: 100%;
+  background: #333d49;
+}
+
+.header-section nav {
+  background-color: #38424e;
+}
+
+main.exb {
+  height: calc(100% - 45px);
+  display: flex;
+}
+
+.question-descr {
+  background: #fff;
+  width: 37%;
+}
+
+.question-numbers {
+  color: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 38px;
+}
+
+.question-numbers li.number {
+  cursor: pointer;
+}
+
+.question-numbers li.number:hover {
+  background: #404a56;
+}
+
+.question-numbers li.selected {
+  background: #556577;
+  color: #67ffea;
+}
+
+.question-numbers li {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+li ._number {
+  font-size: 1.4rem;
+}
+
+span.selected-indicator {
+  display: none;
+  float: right;
+  position: absolute;
+  top: 10px;
+  background: 0 0;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 12px solid #fff;
+  border-right: 12px solid #fff;
+  left: 32px;
+}
+
+.number.selected span.selected-indicator {
+  display: block;
+}
+
+.code-area {
+  width: 60%;
+  padding: 0px 0px 5px 0px;
+}
+
+
+.section--top h5 {
+  margin: 0;
+  padding: 5px 8px;
+}
+
+.section--top {
+  background: #f7f7f7;
+  height: 38px;
+  border-bottom: 1px solid #ddd;
+}
+
+.resizer {
+  height: calc(100% - 45px);
+  width: 1px;
+  background: #dddddd;
+  /* position: relative; */
+  position: absolute;
+  left: 40%;
+  z-index: 3;
+}
+
+.resizer .handle{
+  width: 5px;
+  height: 20px;
+  background: white;
+  margin: auto;
+  position: absolute;
+  left: -2px;
+  border-left: 1.3px solid #676767;
+  border-right: 1.3px solid #676767;
+  border-top: 0px solid #fff;
+  border-bottom: 0px solid #fff;
+  top: 50%;
+  z-index: 2;
+  cursor: e-resize;
+}
+
+.ui.dropdown.s-editor-lang {
+  margin: 3.5px 15px;
+}
+
+.s-editor-lang.ui.selection.dropdown {
+  min-height: 1.71428571em;
+  padding: .48571429em 2.1em .48571429em 1em;
+}
+
+.s-editor-lang.ui.selection.dropdown>.dropdown.icon {
+  top: .48571429em;
+}
+
+.test-area-h-logo{
+  padding: 5px 0;
+}
+
+.test-area-h-logo img{
+  width: 12%;
+  margin-left: 10px;
+}
