@@ -67,7 +67,6 @@ const transitionTypes = {
         position: "absolute",
         transform: "translate3d(0, -56px, 0)",
         width: "100%",
-        background:"#fff"
       },
       enter: { opacity: 1, transform: "translate3d(0, 0px, 0)" },
       leave: { opacity: 0, transform: "translate3d(0, -36px, 0)" }
@@ -79,8 +78,7 @@ const transitionTypes = {
         opacity: 0,
         position: "absolute",
         transform: "translate3d(0, 56px, 0)",
-        width: "100%",
-        background:"#fff"
+        width: "100%"
       },
       enter: { opacity: 1, transform: "translate3d(0, 0px, 0)" },
       leave: { opacity: 0, transform: "translate3d(0, -36px, 0)" }
@@ -91,7 +89,6 @@ const transitionTypes = {
         position: "absolute",
         transform: "translate3d(0, -56px, 0)",
         width: "100%",
-        background:"#fff"
       },
       enter: { opacity: 1, transform: "translate3d(0, 0px, 0)" },
       leave: { opacity: 0, transform: "translate3d(0, 56px, 0)" }
