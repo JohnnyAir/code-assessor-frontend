@@ -3,37 +3,19 @@ import "../styles/admin.css";
 import { Icon, Header, Dropdown } from "semantic-ui-react";
 import logo from "../assets/images/logo2.png";
 import { Switch, Route } from "react-router-dom";
-import Home from "./Admin/Home"
-import CreateTest from "./Admin/CreateTest"
+import NavItem from "../components/NavItem";
+import PageTransition from "../components/PageTransition";
+import { Scrollbars } from "react-custom-scrollbars";
+
+import Home from "./Admin/Home";
+import CreateTest from "./Admin/CreateTest";
+import QuestionPool from "./Admin/QuestionPool";
+import CreateQuestion from "./Admin/CreateQuestion";
 
 function Admin() {
   return (
     <div className="dash_admin teal-theme">
-      <div className="dash-side-bar">
-        <div className="app-icoon">
-          <img src={logo} alt="d" />
-        </div>
-        <div className="sidebar-action">
-          <ul className="sidebar-items">
-            <li className="sidebar-item active">
-              <Icon name="home" />
-              <span> Home </span>
-            </li>
-            <li className="sidebar-item">
-              <Icon name="edit outline" />
-              <span> Create Test</span>
-            </li>
-            <li className="sidebar-item">
-              <Icon name="list alternate outline" />
-              <span> All Tests</span>
-            </li>
-            <li className="sidebar-item">
-              <Icon name="pie chart" />
-              <span>Test Results</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <SideBar />
       <div className="dash-main">
         <div className="dash-main-header">
           <div className="page-descr">
@@ -58,15 +40,61 @@ function Admin() {
                 { key: "settings", text: "Settings", icon: "settings" },
                 { key: "sign-out", text: "Sign Out", icon: "sign out" },
               ]}
-              pointing="top center"
+              pointing="top left"
               icon={null}
             />
           </div>
         </div>
-            <Switch>
-              <Route exact to="/admin" component={ Home } />
-              <Route exact to="/admin/create-test" component={ CreateTest } />
-            </Switch>
+        <Scrollbars className="dash-content">
+          <PageTransition>
+            {(location) => (
+              <Switch location={location}>
+                <Route exact path="/admin" component={Home} />
+                <Route exact path="/admin/test/new" component={CreateTest} />
+                <Route
+                  exact
+                  path="/admin/pool/questions"
+                  component={QuestionPool}
+                />
+                <Route
+                  exact
+                  path="/admin/pool/question/new"
+                  component={CreateQuestion}
+                />
+              </Switch>
+            )}
+          </PageTransition>
+        </Scrollbars>
+      </div>
+    </div>
+  );
+}
+
+function SideBar() {
+  return (
+    <div className="dash-side-bar">
+      <div className="app-icoon">
+        <img src={logo} alt="d" />
+      </div>
+      <div className="sidebar-action">
+        <ul className="sidebar-items">
+          <NavItem exact to="/admin" className="sidebar-item">
+            <Icon name="home" />
+            <span> Home </span>
+          </NavItem>
+          <NavItem exact to="/admin/test/new" className="sidebar-item">
+            <Icon name="edit outline" />
+            <span> Create Test</span>
+          </NavItem>
+          <NavItem exact to="/admin/tests" className="sidebar-item">
+            <Icon name="list alternate outline" />
+            <span> All Tests</span>
+          </NavItem>
+          <NavItem exact to="/admin/pool/questions" className="sidebar-item">
+            <Icon name="pie chart" />
+            <span>Question Pool</span>
+          </NavItem>
+        </ul>
       </div>
     </div>
   );
