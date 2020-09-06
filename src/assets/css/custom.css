@@ -33,3 +33,23 @@ ul {
 .ui.header > .icon + .content {
   font-family: var(--font3);
 }
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.pg-transition {
+  position: relative;
+}
+
+.pd-2 {
+  padding: 20px;
+}
