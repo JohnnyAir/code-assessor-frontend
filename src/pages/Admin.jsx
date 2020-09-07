@@ -82,13 +82,13 @@ function SideBar() {
             <Icon name="home" />
             <span> Home </span>
           </NavItem>
+          <NavItem exact to="/admin/tests" className="sidebar-item">
+            <Icon name="list alternate outline" />
+            <span> Tests</span>
+          </NavItem>
           <NavItem exact to="/admin/test/new" className="sidebar-item">
             <Icon name="edit outline" />
             <span> Create Test</span>
-          </NavItem>
-          <NavItem exact to="/admin/tests" className="sidebar-item">
-            <Icon name="list alternate outline" />
-            <span> All Tests</span>
           </NavItem>
           <NavItem exact to="/admin/pool/questions" className="sidebar-item">
             <Icon name="pie chart" />

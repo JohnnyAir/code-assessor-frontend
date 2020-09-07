@@ -1,0 +1,32 @@
+.stepper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.content.create-test {
+  padding: 20px 50px 0 50px;
+}
+
+.form-area {
+  background: #fff;
+  padding: 10px 40px;
+  box-shadow: 0 1px 11px 2px #dadada;
+  border-radius: 5px;
+}
+
+.form-area form {
+  padding: 10px 0;
+}
+
+.step-direction-btn {
+  margin: 20px 10px;
+  float: right;
+}
+
+.empty-question-list {
+  width: 70%;
+  margin: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
