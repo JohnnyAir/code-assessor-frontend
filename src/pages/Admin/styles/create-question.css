@@ -1,0 +1,22 @@
+.content.add-question {
+  padding: 30px 30px 10px 30px;
+}
+
+.add-question .rc-md-editor {
+  height: 500px;
+}
+
+.criteria-header {
+  position: relative;
+}
+
+.ui.labeled.icon.button.add-guide {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+}
+
+.guide--btn {
+  padding: 10px;
+  float: right;
+}
