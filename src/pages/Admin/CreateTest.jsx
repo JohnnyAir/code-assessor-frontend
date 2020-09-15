@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Step, Form, Button, Message, Dropdown } from "semantic-ui-react";
+import "./styles/create-test.css";
 
 function SetupTestForm() {
   return (
@@ -106,25 +107,27 @@ function TestQuestioList() {
 }
 
 function CreateTest() {
+  const [step, setStep] = useState(1);
+
   return (
     <div className="content create-test">
       <div className="stepper">
         <Step.Group widths={3} ordered>
-          <Step link active>
+          <Step link completed={step > 1} active={step === 1}>
             <Step.Content>
               <Step.Title>Test Setup</Step.Title>
               <Step.Description>Enter test setup information</Step.Description>
             </Step.Content>
           </Step>
 
-          <Step link>
+          <Step link completed={step > 2} active={step === 2}>
             <Step.Content>
               <Step.Title>Add Question</Step.Title>
               <Step.Description>Add questions to the test</Step.Description>
             </Step.Content>
           </Step>
 
-          <Step link>
+          <Step link active={step === 3}>
             <Step.Content>
               <Step.Title>Save</Step.Title>
               <Step.Description>Preview and save</Step.Description>
@@ -132,20 +135,27 @@ function CreateTest() {
           </Step>
         </Step.Group>
       </div>
-      <SetupTestForm />
-      {/* <TestQuestioList /> */}
+      {
+        {
+          1: <SetupTestForm />,
+          2: <TestQuestioList />,
+        }[step]
+      }
       <div className="step-direction-btn">
         <Button
           content="Previous"
-          disabled
           icon="left arrow"
+          color={step === 1 ? "": "blue"}
           labelPosition="left"
+          onClick = {()=>setStep(currStep=>currStep - 1)}
+          disabled = {step === 1}
         />
         <Button
           content="Continue"
           color="blue"
           icon="right arrow"
           labelPosition="right"
+          onClick = {()=>setStep(currStep=>currStep + 1)}
         />
       </div>
     </div>
