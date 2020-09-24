@@ -8,6 +8,7 @@ import PageTransition from "../components/PageTransition";
 import { Scrollbars } from "react-custom-scrollbars";
 
 import Home from "./Admin/Home";
+import Tests from "./Admin/Tests";
 import CreateTest from "./Admin/CreateTest";
 import QuestionPool from "./Admin/QuestionPool";
 import CreateQuestion from "./Admin/CreateQuestion";
@@ -50,6 +51,7 @@ function Admin() {
             {(location) => (
               <Switch location={location}>
                 <Route exact path="/admin" component={Home} />
+                <Route exact path="/admin/tests" component={Tests} />
                 <Route exact path="/admin/test/new" component={CreateTest} />
                 <Route
                   exact
