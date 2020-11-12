@@ -53,3 +53,7 @@ ul {
 .pd-2 {
   padding: 20px;
 }
+
+.ui.button {
+  font-family: var(--font3);
+}
