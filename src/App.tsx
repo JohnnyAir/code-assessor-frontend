@@ -1,16 +1,20 @@
-import { Route, Switch, BrowserRouter } from "react-router-dom";
-import Login from "./pages/Login";
-import SelectTest from "./pages/SelectTest";
+import * as React from "react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Student from "./Student";
+import TakeTest from "./Student/TakeTest";
+import Login from "./Student/Login";
+import theme from "./theme";
 
-function App() {
-  return (
+
+export const App = () => (
+  <ChakraProvider theme={theme}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/my-tests" component={SelectTest} />
+        <Route exact path="/" component={Student} />
+        <Route path="/take-test" component={TakeTest} />
+        <Route path="/login" component={Login} />
       </Switch>
     </BrowserRouter>
-  );
-}
-
-export default App;
+  </ChakraProvider>
+);
