@@ -62,7 +62,7 @@ function Index(props: Props) {
               <Text>HND 2</Text>
             </Flex>
           </Stack>
-          <Box>
+          <Box pl={6}>
             <Heading mb={3} size="md">
               Test Portal
             </Heading>

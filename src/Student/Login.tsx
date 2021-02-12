@@ -34,7 +34,7 @@ function Login(props: Props) {
                 <Input size="lg" placeholder="Password" type="password" />
               </FormControl>
             </Stack>
-            <Button width="full"size="lg" colorScheme="brand">
+            <Button width="full" size="lg" colorScheme="brand">
               Login
             </Button>
           </form>
