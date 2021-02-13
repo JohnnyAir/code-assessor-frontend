@@ -1,14 +1,24 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { render } from "react-dom";
-import { Box } from "@chakra-ui/react";
+import gfm from "remark-gfm";
+import { MarkDownContainer } from "./style";
+
+// import languages to highlight
+import java from "react-syntax-highlighter/dist/esm/languages/prism/java";
+import cpp from "react-syntax-highlighter/dist/esm/languages/prism/cpp";
+import clike from "react-syntax-highlighter/dist/esm/languages/prism/clike";
+
+SyntaxHighlighter.registerLanguage("java", java);
+SyntaxHighlighter.registerLanguage("cpp", cpp);
+SyntaxHighlighter.registerLanguage("clike", clike);
 
 const renderers = {
   code: ({ language, value }: { language: string; value: string }) => {
     return (
-      <SyntaxHighlighter style={dark} language={language} children={value} />
+      <SyntaxHighlighter style={dracula} language={language} children={value} />
     );
   },
 };
@@ -19,20 +29,16 @@ const MarkDownPreview: React.FC<{ str: string }> = ({ str }) => {
   React.useEffect(() => {
     if (previewArea.current === null) return;
     render(
-      <ReactMarkdown renderers={renderers} children={str} />,
+      <ReactMarkdown
+        plugins={[[gfm, { singleTilde: false }]]}
+        renderers={renderers}
+        children={str}
+      />,
       previewArea.current
     );
   }, [str]);
 
-  return (
-    <Box
-      px={5}
-      py={5}
-      height="calc(100vh - 5.5rem)"
-      overflow="auto"
-      ref={previewArea}
-    ></Box>
-  );
+  return <MarkDownContainer ref={previewArea} />;
 };
 
 export default MarkDownPreview;
