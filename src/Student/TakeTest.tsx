@@ -1,4 +1,9 @@
 import React from "react";
+import logo from "../images/logo.png";
+import { CheckCircleIcon, TimeIcon } from "@chakra-ui/icons";
+import CodeEditor from "../Components/CodeEditor/CodeEditor";
+import { lang, langModeValue } from "../Components/CodeEditor/lang";
+import MarkDownPreview from "../Components/Markdown";
 import {
   chakra,
   Flex,
@@ -13,23 +18,21 @@ import {
   Center,
   Select,
 } from "@chakra-ui/react";
-import logo from "../images/logo.png";
-import { CheckCircleIcon, TimeIcon } from "@chakra-ui/icons";
-import CodeEditor from "../Components/CodeEditor/CodeEditor";
-import { lang, langModeValue } from "../Components/CodeEditor/lang";
-import MarkDownPreview from "../Components/Markdown";
-import { question } from "../data/question";
 
 function TakeTest() {
   return (
     <>
       <Header />
-      <Grid position="relative" templateColumns="50px auto 760px">
+      <Grid
+        position="relative"
+        templateColumns="50px auto 760px"
+        height="calc(100vh - 48px)"
+      >
         <Box width="full" bg="brand.900" py={12} height="calc(100vh - 48px)">
           <Center>
             <Stack spacing={8}>
               {[1, 2, 3, 4].map((number) => (
-                <Heading cursor="pointer" size="md" color="white">
+                <Heading key={number} cursor="pointer" size="md" color="white">
                   {number}
                 </Heading>
               ))}
@@ -83,7 +86,7 @@ function Header() {
 
 function QuestionView() {
   return (
-    <Box width="full">
+    <Box width="full" height="calc(100vh - 48px)">
       <Flex
         align="center"
         bg="gray.200"
@@ -97,7 +100,15 @@ function QuestionView() {
           Question 1
         </Text>
       </Flex>
-      <MarkDownPreview str={question.questionText} />
+      <Box
+        height="calc(100% - 2.5rem)"
+        width="full"
+        px={4}
+        py={2}
+        overflow="auto"
+      >
+        <MarkDownPreview str="### Question Goes Here " />
+      </Box>
     </Box>
   );
 }
@@ -129,7 +140,7 @@ function TestEditor() {
           onChange={(e) => setLaguageMode(lang.mode[e.target.value])}
         >
           {lang.languages.map((langauge) => (
-            <option value={langauge}>{langauge}</option>
+            <option key={langauge} value={langauge}>{langauge}</option>
           ))}
         </Select>
       </Flex>
