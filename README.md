@@ -1,7 +1,6 @@
-## NB
-
-This repo is not completed! 
-
+```
+Note: This repo is not completed
+```
 ## About
 
 This project was bootstrapped with
