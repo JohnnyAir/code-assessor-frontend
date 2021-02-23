@@ -1,4 +1,4 @@
-export const base_url: string = "";
+export const base_url: string = "http://localhost:3000/";
 
 export const get: <T>(url: string) => Promise<T> = (url) => {
   return fetch(url).then((response) => {

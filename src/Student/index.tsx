@@ -15,6 +15,9 @@ import logo from "../images/logo.png";
 import { ReactComponent as Logout } from "../images/exit.svg";
 import profile from "../images/user-profile.png";
 import TestCard from "../Components/TestCard";
+import { getStudentTests } from "./api";
+import { useQuery } from "react-query";
+import { useHistory } from "react-router-dom";
 
 interface Props {}
 
@@ -67,19 +70,40 @@ function Index(props: Props) {
               Test Portal
             </Heading>
             <Text fontSize="sm">Your active tests</Text>
-            <Grid
-              mt={5}
-              width="full"
-              templateColumns="repeat(auto-fill, minmax(28rem, 1fr))"
-              gap={2}
-              gridAutoRows="minmax(12rem, auto)"
-            >
-              <TestCard></TestCard>
-            </Grid>
+            <ActiveTests />
           </Box>
         </Grid>
       </Box>
     </>
+  );
+}
+
+function ActiveTests() {
+  const history = useHistory();
+  const { isLoading, isError, data } = useQuery("Tests", getStudentTests);
+  if (isLoading) return <Text>loading</Text>;
+  if (isError)
+    return <Text>Error loading tests. please reload page to try again </Text>;
+  return (
+    <Grid
+      mt={5}
+      width="full"
+      templateColumns="repeat(auto-fill, minmax(28rem, 1fr))"
+      gap={2}
+      gridAutoRows="minmax(12rem, auto)"
+    >
+      {data && data.length ? (
+        data.map((test) => (
+          <TestCard
+            key={test.testId}
+            {...test}
+            onClick={(id) => history.push(`/take-test/${id}?q=1`)}
+          />
+        ))
+      ) : (
+        <Text>You have no pending tests</Text>
+      )}
+    </Grid>
   );
 }
 

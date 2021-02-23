@@ -1,26 +1,40 @@
 import React from "react";
-import { Box, Flex, Image, FormControl, FormLabel, Input, Stack, Button, Alert, AlertDescription, AlertIcon, CloseButton } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Image,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  Button,
+  Alert,
+  AlertDescription,
+  AlertIcon,
+} from "@chakra-ui/react";
 import logo from "../images/logo.png";
+import { useLogin } from "./hooks";
 
 interface ValidationState {
-  [key: string]: string | boolean;
   loginId: boolean;
   password: boolean;
-  formError: string;
+  [key: string]: string | boolean;
 }
+
+const initialFormValidationState = {
+  loginId: false,
+  password: false,
+};
 
 function Login() {
   const [loginId, setLoginId] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [validationState, setValidationState] = React.useState<ValidationState>(
-    {
-      loginId: false,
-      password: false,
-      formError: "",
-    }
+    initialFormValidationState
   );
+  const { login, error, isLoading } = useLogin();
 
-  const setFormData = (handler: (value: string) => any) => {
+  const setFormData = (handler: (value: string) => void) => {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value, name } = event.target;
       handler(value);
@@ -32,12 +46,12 @@ function Login() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!loginId || !password) {
-      return setValidationState((prev) => ({
-        ...prev,
-        loginId: !loginId,
-        password: !password,
-      }));
+      return setValidationState({ loginId: !loginId, password: !password });
     }
+    login({
+      username: loginId,
+      password: password,
+    });
   };
 
   return (
@@ -47,24 +61,21 @@ function Login() {
       </Box>
       <Flex pt={[6, null, 10]} justify="center">
         <Box width={["full", null, "96"]} px={6}>
-          {validationState.formError && (
+          {error && (
             <Alert status="error">
               <AlertIcon />
-              <AlertDescription fontSize="sm">
-                {validationState.formError}
-              </AlertDescription>
-              <CloseButton position="absolute" right="8px" top="8px" />
+              <AlertDescription fontSize="sm">{error.message}</AlertDescription>
             </Alert>
           )}
           <form onSubmit={handleSubmit}>
             <Stack spacing={3} py={10}>
               <FormControl isInvalid={validationState.loginId}>
-                <FormLabel>Matric Number</FormLabel>
+                <FormLabel>Login Id</FormLabel>
                 <Input
                   value={loginId}
                   onChange={setFormData(setLoginId)}
                   size="lg"
-                  placeholder="Matric Number"
+                  placeholder="Your Login Id"
                   type="text"
                   name="loginId"
                 />
@@ -81,7 +92,13 @@ function Login() {
                 />
               </FormControl>
             </Stack>
-            <Button type="submit" width="full" size="lg" colorScheme="brand">
+            <Button
+              isLoading={isLoading}
+              type="submit"
+              width="full"
+              size="lg"
+              colorScheme="brand"
+            >
               Login
             </Button>
           </form>

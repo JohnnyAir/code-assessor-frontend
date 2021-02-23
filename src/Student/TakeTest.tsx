@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../images/logo.png";
+import { useParams, useLocation, useHistory } from "react-router-dom";
 import { CheckCircleIcon, TimeIcon } from "@chakra-ui/icons";
 import CodeEditor from "../Components/CodeEditor/CodeEditor";
 import { lang, langModeValue } from "../Components/CodeEditor/lang";
@@ -18,8 +19,13 @@ import {
   Center,
   Select,
 } from "@chakra-ui/react";
+import { getSearchParam } from "../utils/helpers";
 
 function TakeTest() {
+  const { testId } = useParams<{ testId: string }>();
+  const { search } = useLocation();
+  const questionNumber = parseInt(getSearchParam(search, "q") || "1");
+
   return (
     <>
       <Header />
@@ -28,18 +34,8 @@ function TakeTest() {
         templateColumns="50px auto 760px"
         height="calc(100vh - 48px)"
       >
-        <Box width="full" bg="brand.900" py={12} height="calc(100vh - 48px)">
-          <Center>
-            <Stack spacing={8}>
-              {[1, 2, 3, 4].map((number) => (
-                <Heading key={number} cursor="pointer" size="md" color="white">
-                  {number}
-                </Heading>
-              ))}
-            </Stack>
-          </Center>
-        </Box>
-        <QuestionView />
+        <QuestionNumbersList questionNumber={questionNumber} />
+        <QuestionView questionNumber={questionNumber} />
         <Divider
           position="absolute"
           right="761px"
@@ -55,7 +51,46 @@ function TakeTest() {
   );
 }
 
+function QuestionNumbersList({ questionNumber }: { questionNumber: number }) {
+  const history = useHistory();
+  return (
+    <Box width="full" bg="brand.900" py={12} height="calc(100vh - 48px)">
+      <Center>
+        <Stack
+          textAlign="center"
+          w="full"
+          spacing={2}
+          sx={{ "& .active": { bg: "brand.700" } }}
+        >
+          {[1, 2, 3, 4].map((number) => (
+            <Heading
+              className={questionNumber === number ? "active" : ""}
+              py={4}
+              key={number}
+              cursor="pointer"
+              size="md"
+              color="white"
+              _hover={{ bg: "brand.700" }}
+              onClick={() =>
+                history.push({
+                  pathname: history.location.pathname,
+                  search: `q=${number}`,
+                })
+              }
+            >
+              {number}
+            </Heading>
+          ))}
+        </Stack>
+      </Center>
+    </Box>
+  );
+}
+
 function Header() {
+
+  // const timer = 
+
   return (
     <chakra.header
       height={12}
@@ -84,7 +119,7 @@ function Header() {
   );
 }
 
-function QuestionView() {
+function QuestionView({ questionNumber }: { questionNumber: number }) {
   return (
     <Box width="full" height="calc(100vh - 48px)">
       <Flex
@@ -97,7 +132,7 @@ function QuestionView() {
         px={2}
       >
         <Text cursor="pointer" fontSize="md">
-          Question 1
+          Question {questionNumber}
         </Text>
       </Flex>
       <Box
@@ -107,7 +142,7 @@ function QuestionView() {
         py={2}
         overflow="auto"
       >
-        <MarkDownPreview str="### Question Goes Here " />
+        <MarkDownPreview str={`### Question ${questionNumber} Goes Here `}/>
       </Box>
     </Box>
   );
@@ -140,7 +175,9 @@ function TestEditor() {
           onChange={(e) => setLaguageMode(lang.mode[e.target.value])}
         >
           {lang.languages.map((langauge) => (
-            <option key={langauge} value={langauge}>{langauge}</option>
+            <option key={langauge} value={langauge}>
+              {langauge}
+            </option>
           ))}
         </Select>
       </Flex>
