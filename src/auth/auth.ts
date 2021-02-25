@@ -6,22 +6,24 @@ export interface User {
   name: string;
   email: string;
   username: string;
+  department?: string;
+  level?: string;
 }
 
 export function fetchLoginUser() {
-  const loggredIn = localStorage.getItem("login");
-  return get<User>(loggredIn ? `${base_url}user.mock.json` : "./nofile.json");
+  const loggedIn = localStorage.getItem("login");
+  return get<User>(loggedIn ? `${base_url}mock/user.mock.json` : "./nofile.json");
 }
 
 export function Logout() {
   return get<User>("./user.mock.json");
 }
 
-export type LoginBody = { username: string; password: string };
+export type LoginRequest = { username: string; password: string };
 
-export const Login = async ({ username, password }: LoginBody) => {
+export const Login = async ({ username, password }: LoginRequest) => {
   await delay(2000);
   if (username !== "F/HD/18/2342345" || password !== "yourpassword")
     throw new Error("Invalid credentials");
-  return get<User>(`${base_url}user.mock.json`);
+  return get<User>(`${base_url}mock/user.mock.json`);
 };
