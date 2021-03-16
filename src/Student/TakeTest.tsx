@@ -2,9 +2,9 @@ import React from "react";
 import logo from "../images/logo.png";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import { CheckCircleIcon, TimeIcon } from "@chakra-ui/icons";
-import CodeEditor from "../Components/CodeEditor/CodeEditor";
-import { lang, langModeValue } from "../Components/CodeEditor/lang";
-import MarkDownPreview from "../Components/Markdown";
+import CodeEditor from "../components/CodeEditor/CodeEditor";
+import { lang, langModeValue } from "../components/CodeEditor/lang";
+import MarkDownPreview from "../components/Markdown";
 import {
   chakra,
   Flex,
@@ -19,7 +19,7 @@ import {
   Center,
   Select,
 } from "@chakra-ui/react";
-import { getSearchParam } from "../utils/helpers";
+import { getSearchParam } from "lib/helpers";
 
 function TakeTest() {
   const { testId } = useParams<{ testId: string }>();

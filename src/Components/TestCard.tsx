@@ -27,6 +27,7 @@ function TestCard(props: Props) {
 
   return (
     <Box
+      bg="white"
       borderWidth={1}
       borderStyle="solid"
       px="4"
