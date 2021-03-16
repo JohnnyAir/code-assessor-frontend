@@ -1,29 +1,27 @@
-import { get, base_url } from "../utils/requestHandler";
-import { delay } from "../utils/helpers";
+import { loadAuthState, saveAuthState } from "lib/store";
+import { apiGet, apiPost } from "lib/api-client";
+import { AuthUser, LoginRequest } from "./auth.types";
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  username: string;
-  department?: string;
-  level?: string;
+export const authQueryKey = "authUserData";
+
+export async function getAuthUserData() {
+  const authData = loadAuthState();
+  let user = null;
+  let token = null
+  if (authData) {
+    const response = await apiGet<AuthUser>("/api/auth/authuser");
+    user = response.data?.user;
+    token = response.data?.token;
+    if (response.data) saveAuthState(response.data);
+  }
+  return { user, token };
 }
 
-export function fetchLoginUser() {
-  const loggedIn = localStorage.getItem("login");
-  return get<User>(loggedIn ? `${base_url}mock/user.mock.json` : "./nofile.json");
+export function login(data: LoginRequest) {
+  return apiPost<AuthUser>("/api/auth/login", data).then((res) => {
+    if (res.data) saveAuthState(res.data);
+    return res.data;
+  });
 }
 
-export function Logout() {
-  return get<User>("./user.mock.json");
-}
-
-export type LoginRequest = { username: string; password: string };
-
-export const Login = async ({ username, password }: LoginRequest) => {
-  await delay(2000);
-  if (username !== "F/HD/18/2342345" || password !== "yourpassword")
-    throw new Error("Invalid credentials");
-  return get<User>(`${base_url}mock/user.mock.json`);
-};
+export function logout() {}

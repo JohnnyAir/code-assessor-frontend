@@ -13,7 +13,6 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import logo from "../images/logo.png";
-import { useLogin } from "./hooks";
 
 interface ValidationState {
   loginId: boolean;
@@ -32,7 +31,6 @@ function Login() {
   const [validationState, setValidationState] = React.useState<ValidationState>(
     initialFormValidationState
   );
-  const { login, error, isLoading } = useLogin();
 
   const setFormData = (handler: (value: string) => void) => {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,10 +46,6 @@ function Login() {
     if (!loginId || !password) {
       return setValidationState({ loginId: !loginId, password: !password });
     }
-    login({
-      username: loginId,
-      password: password,
-    });
   };
 
   return (
@@ -61,10 +55,10 @@ function Login() {
       </Box>
       <Flex pt={[6, null, 10]} justify="center">
         <Box width={["full", null, "96"]} px={6}>
-          {error && (
+          {null && (
             <Alert status="error">
               <AlertIcon />
-              <AlertDescription fontSize="sm">{error.message}</AlertDescription>
+              <AlertDescription fontSize="sm">{null}</AlertDescription>
             </Alert>
           )}
           <form onSubmit={handleSubmit}>
@@ -93,7 +87,7 @@ function Login() {
               </FormControl>
             </Stack>
             <Button
-              isLoading={isLoading}
+              isLoading={false}
               type="submit"
               width="full"
               size="lg"

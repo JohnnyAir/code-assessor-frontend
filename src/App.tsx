@@ -1,34 +1,49 @@
 import * as React from "react";
-import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ChakraProvider, Flex, Text } from "@chakra-ui/react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { UserProvider } from "./auth/userContext";
-import { AuthenticatedRoutesWrapper } from "./auth/AuthenticatedRoute";
+import { AuthProvider, useAuth } from "./auth/AuthContext";
 import theme from "./theme";
-import Student from "./Student";
-import TakeTest from "./Student/TakeTest";
-import Login from "./auth/Login";
+
+const Student = React.lazy(() => import("student"));
+const Admin = React.lazy(() => import("admin"));
+const Login = React.lazy(() => import("auth/Login"));
 
 const queryClient = new QueryClient();
 
-const ProtectedRoutes = (props:any) => (
-  <AuthenticatedRoutesWrapper {...props}>
-    <Route exact path="/" component={Student} />
-    <Route exact path="/take-test/:testId" component={TakeTest} />
-  </AuthenticatedRoutesWrapper>
-);
+const LoadAppRoutes = (props: any) => {
+  const { user } = useAuth();
+console.log(user)
+  return (
+    <React.Suspense
+      fallback={
+        <Flex justify="center" align="center" h="100vh">
+          <Text>loading</Text>
+        </Flex>
+      }
+    >
+      <Switch>
+        {!user ? (
+          <Route exact path="/" component={Login} />
+        ) : (
+          <Route path="/">
+            <Route path="/" component={Student} />
+            <Route path="/admin" component={Admin} />
+          </Route>
+        )}
+      </Switch>
+    </React.Suspense>
+  );
+};
 
 export const App = () => (
   <QueryClientProvider client={queryClient}>
     <ChakraProvider theme={theme}>
-      <UserProvider>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route path="/" component={ProtectedRoutes} />
-          </Switch>
-        </BrowserRouter>
-      </UserProvider>
+      <AuthProvider>
+        <Router>
+          <LoadAppRoutes />
+        </Router>
+      </AuthProvider>
     </ChakraProvider>
   </QueryClientProvider>
 );

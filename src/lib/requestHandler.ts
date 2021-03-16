@@ -1,4 +1,4 @@
-export const base_url: string = "http://localhost:3000/";
+import { QueryCache } from "react-query";
 
 export const get: <T>(url: string) => Promise<T> = (url) => {
   return fetch(url).then((response) => {
@@ -9,7 +9,10 @@ export const get: <T>(url: string) => Promise<T> = (url) => {
   });
 };
 
-export const post: <T>(url: string, body: string) => Promise<T> = ( url, body) => {
+export const post: <T>(url: string, body: string) => Promise<T> = (
+  url,
+  body
+) => {
   return fetch(url, {
     method: "POST",
     headers: {
