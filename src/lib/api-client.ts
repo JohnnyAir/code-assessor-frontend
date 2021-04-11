@@ -1,3 +1,5 @@
+import { createErrorFromApiResponse, createNetworkError } from "./error";
+
 const apiURL = process.env.REACT_APP_API_URL || "";
 
 interface ApiResponse<T> {
@@ -7,7 +9,10 @@ interface ApiResponse<T> {
   message: string;
 }
 
-type ApiClient = <T>( url: string, options?: RequestInit ) => Promise<ApiResponse<T>>;
+type ApiClient = <T>(
+  url: string,
+  options?: RequestInit
+) => Promise<ApiResponse<T>>;
 
 export const client: ApiClient = async (url, options = {}) => {
   const { headers, ...config } = options;
@@ -21,12 +26,12 @@ export const client: ApiClient = async (url, options = {}) => {
       ...config,
     });
     if (!response.ok) {
-      let data = await response.clone().json();
-      return Promise.reject(data);
+      const error = await createErrorFromApiResponse(response);
+      return Promise.reject(error);
     }
     return response.json();
   } catch (e) {
-    Promise.reject(e);
+    Promise.reject(createNetworkError(e));
   }
 };
 
@@ -36,7 +41,7 @@ export const apiGet: ApiClient = async (url, options = {}) => {
 
 type ApiClientPost = <T>(
   url: string,
-  data: string | Record<string,any>,
+  data: string | Record<string, any>,
   options?: RequestInit
 ) => Promise<ApiResponse<T>>;
 
