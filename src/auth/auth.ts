@@ -9,8 +9,8 @@ export async function getAuthUserData() {
   let user = null;
   let token = null
   if (authData) {
-    const response = await apiGet<AuthUser>("/api/auth/authuser");
-    user = response.data?.user;
+    const response = await apiGet<AuthUser>("/mock/user.mock.json");
+    user = response //response.data?.user;
     token = response.data?.token;
     if (response.data) saveAuthState(response.data);
   }
@@ -18,7 +18,7 @@ export async function getAuthUserData() {
 }
 
 export function login(data: LoginRequest) {
-  return apiPost<AuthUser>("/api/auth/login", data).then((res) => {
+  return apiPost<AuthUser>("/mock/user.mock.json", data).then((res) => {
     if (res.data) saveAuthState(res.data);
     return res.data;
   });
