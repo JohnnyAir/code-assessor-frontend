@@ -1,17 +1,20 @@
-import { HStack } from "@chakra-ui/react";
-import FormInput from "./FormInput";
+import FormInput, { FormInputProps } from "./Form";
 import TimePicker from "./TimePicker";
 import React from "react";
 
-interface Props {}
+const rightItemProps = {
+  p: 0,
+  w: "40%",
+};
 
-function DateTimePicker(props: Props) {
-  const {} = props;
-
+function DateTimePicker(props: FormInputProps) {
   return (
-    <HStack>
-      <FormInput type="date" rightItemProps={{}} rightItem={<TimePicker />} />
-    </HStack>
+    <FormInput
+      {...props}
+      type="date"
+      rightItemProps={rightItemProps}
+      rightItem={<TimePicker />}
+    />
   );
 }
 

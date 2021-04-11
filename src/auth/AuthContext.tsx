@@ -35,7 +35,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     [updateQueryData]
   );
 
-  if (authState.status === "loading")
+  if (authState.status === "loading" && !authState.isFetched)
     return (
       <Flex justify="center" align="center" h="100vh">
         <Text>loading</Text>

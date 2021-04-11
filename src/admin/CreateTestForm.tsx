@@ -1,6 +1,6 @@
 import React from "react";
-import FormInput from "../components/FormInput";
-import { Box, Stack, Heading } from "@chakra-ui/react";
+import { FormInput, FormRow } from "../components/Form";
+import { Box, Stack, Heading, Textarea } from "@chakra-ui/react";
 import DateTimePicker from "../components/DateTimePicker";
 
 interface Props {}
@@ -9,26 +9,33 @@ function CreateTestForm(props: Props) {
   // const {} = props;
 
   return (
-    <Box maxW="4xl" m="auto">
+    <Box w="full">
       <Heading size="sm" mb={4}>
         Setup New Test
       </Heading>
       <form>
         <Stack spacing={4}>
-          <Stack direction={["column", null, "row"]} spacing={4}>
-            <FormInput label="Test Code" placeholder="Enter course code" />
+          <FormRow>
+            <FormInput label="Course Code" placeholder="Enter course code" />
             <FormInput
-              label="Test Title"
+              label="Course Title"
               placeholder="Enter title. eg Advanced Java Test"
             />
-          </Stack>
-          <Stack direction={["column", null, "row"]} spacing={4}>
-            <DateTimePicker />
+          </FormRow>
+          <FormRow>
+            <DateTimePicker label="Date From" />
+            <DateTimePicker label="Date To" />
+          </FormRow>
+          <FormRow>
+            <FormInput label="Language" placeholder="Select Langauage" />
             <FormInput
-              label="Test Title"
+              label="Maximum Question Attempt"
               placeholder="Enter title. eg Advanced Java Test"
             />
-          </Stack>
+          </FormRow>
+          <FormRow>
+            <FormInput as={Textarea} label="Instructions" placeholder="" />
+          </FormRow>
         </Stack>
       </form>
     </Box>

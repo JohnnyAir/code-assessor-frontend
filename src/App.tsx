@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { ChakraProvider, Flex, Text } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 const LoadAppRoutes = (props: any) => {
   const { user } = useAuth();
-console.log(user)
+
   return (
     <React.Suspense
       fallback={

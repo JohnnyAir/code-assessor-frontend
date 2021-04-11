@@ -6,6 +6,8 @@
     "languages": ["JAVA"],
     "startDate": "12/02/2020 12:30pm",
     "endDate": "12/02/2020 19:30pm",
-    "durationInMinutes": 60
+    "durationInMinutes": 60,
+    "instructions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus purus augue, quis tristique lectus molestie nec. Morbi eu consequat tortor, vitae condimentum arcu. Curabitur nec cursus tellus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla at mauris tristique, molestie tortor eu, tristique tortor. Nunc felis nisi, pulvinar vitae gravida ac, ornare aliquam eros. Phasellus vulputate, neque a sollicitudin pulvinar, mi purus posuere erat, id imperdiet lacus est auctor tellus. Sed purus urna, maximus eu lorem a, faucibus convallis magna. Aenean ac eros eros. Nam euismod lectus commodo, fermentum elit et, consequat ipsum. Proin magna enim, pretium in dui at, luctus molestie libero. Integer sit amet feugiat nisl. Nam elementum, leo vel ultricies mollis, quam dolor sodales neque, et suscipit justo diam id mi."
   }
 ]
+  

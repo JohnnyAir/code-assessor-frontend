@@ -1,15 +1,9 @@
 import { Box, Text, Divider, Flex, Badge } from "@chakra-ui/react";
 import { TimeIcon, CalendarIcon } from "@chakra-ui/icons";
 import React from "react";
+import { Test } from "./types";
 
-interface Props {
-  testId: string;
-  testTitle: string;
-  testCode: string;
-  languages: string[];
-  startDate: string;
-  endDate: string;
-  durationInMinutes: number;
+interface Props extends Test {
   onClick: (testId: string) => void;
 }
 
@@ -37,6 +31,7 @@ function TestCard(props: Props) {
       cursor="pointer"
       _hover={{ borderColor: "brand.200", boxShadow: "lg" }}
       onClick={() => onClick(testId)}
+      tabIndex={0}
     >
       <Flex justify="space-between">
         <Badge px={2} py={1} colorScheme="gray">
