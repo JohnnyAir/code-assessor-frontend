@@ -14,24 +14,24 @@ function TestInfo(props: Props) {
   return (
     <>
       <Stack spacing={2}>
-        <Heading size="md">
-          <Text letterSpacing="0.3px" color="gray.500" as="span">
-            {data?.testCode}
-          </Text>
-          : {data?.testTitle}
-        </Heading>
+        <Text fontWeight="semibold" color="gray.500" as="span">
+          {data?.testCode}
+        </Text>
+        <Heading size="md">{data?.testTitle}</Heading>
         <Flex color="gray.500" alignItems="center">
-          <Icon w="1.3" h="1.3" as={MdTimer} />
-          <Text pl="3">{data?.durationInMinutes}</Text>
+          <Icon w="6" h="6" as={MdTimer} />
+          <Text fontWeight="semibold" pl="1">
+            {data?.durationInMinutes}minutes
+          </Text>
         </Flex>
-        <Flex direction="column">
+        {/* <Flex direction="column">
           <Text fontSize="sm" color="gray.500">
             Programing Language
           </Text>
           <Text fontSize="sm" color="gray.700">
             {data?.languages.join(",")}
           </Text>
-        </Flex>
+        </Flex> */}
       </Stack>
       <Heading my="4" size="xs">
         Instructions

@@ -9,7 +9,7 @@ function AddQuestion(props: Props) {
   // const {} = props;
 
   return (
-    <Box maxW="4xl" m="auto">
+    <Box>
       <Heading size="sm" mb={4}>
         Add Question
       </Heading>

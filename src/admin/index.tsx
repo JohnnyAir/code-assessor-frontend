@@ -69,7 +69,7 @@ function Index() {
       <Box px={[4, 32]} py={8}>
         <Switch>
           <Route exact path="/admin" component={TestsList} />
-          <Route exact path="/new/question" component={AddQuestion} />
+          <Route exact path="/admin/new/question" component={AddQuestion} />
           <Route exact path="/new/test" component={CreateTestForm} />
         </Switch>
       </Box>

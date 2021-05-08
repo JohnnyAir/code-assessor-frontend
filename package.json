@@ -8,6 +8,7 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@styled-system/css": "^5.1.5",
+    "@styled-system/theme-get": "^5.1.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^10.4.9",
     "@testing-library/user-event": "^12.6.3",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@types/codemirror": "0.0.108",
     "@types/react-query": "1.1.2",
-    "@types/react-syntax-highlighter": "^13.5.0"
+    "@types/react-syntax-highlighter": "^13.5.0",
+    "@types/styled-system__theme-get": "^5.0.1"
   }
 }
