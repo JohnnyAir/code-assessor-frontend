@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Box } from "@chakra-ui/react";
 //@ts-ignore
 import css from "@styled-system/css";
+import { themeGet } from "@styled-system/theme-get";
 
 export const MarkDownContainer = styled(Box)(
   css({
@@ -71,3 +72,14 @@ export const MarkDownContainer = styled(Box)(
     },
   })
 );
+
+export const MarkDownEditorStyle = styled(Box)`
+  height: 100%;
+  & .rc-md-editor {
+    height: 100%;
+  }
+  section.sec-md {
+    border-right-width: 1px;
+    border-right-color: ${themeGet("color.gray.400")};
+  }
+`;

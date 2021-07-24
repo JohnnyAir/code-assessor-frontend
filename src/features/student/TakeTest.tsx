@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../images/logo.png";
+import logo from "images/logo.png";
 import { useParams, useLocation, useHistory } from "react-router-dom";
 import { CheckCircleIcon, TimeIcon } from "@chakra-ui/icons";
-import CodeEditor from "../components/CodeEditor/CodeEditor";
-import { lang, langModeValue } from "../components/CodeEditor/lang";
-import MarkDownPreview from "../components/Markdown";
+import CodeEditor from "../code-editor/CodeEditor";
+import { lang, langModeValue } from "../code-editor/lang";
+import MarkDownPreview from "../markdown";
 import {
   chakra,
   Flex,

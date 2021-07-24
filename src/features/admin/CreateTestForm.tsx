@@ -1,7 +1,7 @@
 import React from "react";
-import { FormInput, FormRow } from "../components/Form";
+import { FormInput, FormRow } from "../shared/components/Form";
 import { Box, Stack, Heading, Textarea } from "@chakra-ui/react";
-import DateTimePicker from "../components/DateTimePicker";
+import DateTimePicker from "../shared/components/DateTimePicker";
 
 interface Props {}
 

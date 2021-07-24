@@ -10,11 +10,9 @@ export const ERROR = {
 
 export const errorMsg = {
   [ERROR.UNKNOWN]: "An Error has Occured",
-  [ERROR.NETWORK]:
-    "A network error occured, check your internet connectivity and try again",
+  [ERROR.NETWORK]:"A network error occured, check your internet connectivity and try again",
   [ERROR.PROXY_ERROR]: "Could not proxy request.",
-  [ERROR.SERVER_ERROR]:
-    "Well, this is unexpected. An Error has occured we are working to fix this.",
+  [ERROR.SERVER_ERROR]: "Well, this is unexpected. An Error has occured we are working to fix this.",
 };
 
 const ErrorToStatusMapping: { [key: number]: string } = {
@@ -47,7 +45,7 @@ export const createErrorFromApiResponse = async (response: Response) => {
   }
 
   let errorType = ErrorToStatusMapping[status] || ERROR.UNKNOWN;
-  let errorMessage = errorMsg[errorType];
+  let errorMessage = errorMsg[errorType] || data?.message;
 
   return new CustomError(errorType, {
     message: errorMessage,

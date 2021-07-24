@@ -7,11 +7,12 @@ import {
   Text,
   HStack,
 } from "@chakra-ui/react";
-import logo from "../images/logo.png";
+import logo from "images/logo.png";
 import { NavLink, Route, Switch } from "react-router-dom";
-import AddQuestion from "./AddQuestion";
 import CreateTestForm from "./CreateTestForm";
 import TestsList from "./TestsList";
+import CreateQuestion from "../question/CreateQuestion";
+import Questions from "../question";
 
 function Index() {
   return (
@@ -60,7 +61,7 @@ function Index() {
             <NavLink exact to="/admin">
               <Text>Tests</Text>
             </NavLink>
-            <NavLink to="/admin/question-pool">
+            <NavLink to="/admin/questions">
               <Text>Question Pool</Text>
             </NavLink>
           </HStack>
@@ -69,7 +70,8 @@ function Index() {
       <Box px={[4, 32]} py={8}>
         <Switch>
           <Route exact path="/admin" component={TestsList} />
-          <Route exact path="/admin/new/question" component={AddQuestion} />
+          <Route exact path="/admin/questions" component={Questions} />
+          <Route exact path="/admin/create-question" component={CreateQuestion} />
           <Route exact path="/new/test" component={CreateTestForm} />
         </Switch>
       </Box>

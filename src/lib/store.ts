@@ -1,3 +1,5 @@
+import { AuthResponse } from "features/auth/auth.types";
+
 export const getItem = (key: string) => {
   try {
     return localStorage.getItem(key);
@@ -30,7 +32,7 @@ export const saveItem = (key: string, value: string | object) => {
 };
 
 export const loadAuthState = () => {
-  return getJsonItem("__auth");
+  return getJsonItem<AuthResponse | null>("__auth");
 };
 
 export const saveAuthState = (state: Record<string, any> | string) => {

@@ -15,15 +15,24 @@ SyntaxHighlighter.registerLanguage("java", java);
 SyntaxHighlighter.registerLanguage("cpp", cpp);
 SyntaxHighlighter.registerLanguage("clike", clike);
 
+type MarkDownRenderersProps = { language: string; value: string };
+
 const renderers = {
-  code: ({ language, value }: { language: string; value: string }) => {
+  code: (props: MarkDownRenderersProps) => {
+    console.log(props)
     return (
-      <SyntaxHighlighter style={dracula} language={language} children={value} />
+      <SyntaxHighlighter
+        style={dracula}
+        language={props.language || "clike"}
+        children={props.value || ""}
+      />
     );
   },
 };
 
-const MarkDownPreview: React.FC<{ str: string }> = ({ str }) => {
+type MarkDownPreviewProps = { str: string };
+
+const MarkDownPreview: React.FC<MarkDownPreviewProps> = ({ str }) => {
   const previewArea = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -40,5 +49,15 @@ const MarkDownPreview: React.FC<{ str: string }> = ({ str }) => {
 
   return <MarkDownContainer ref={previewArea} />;
 };
+
+export function Ass({ str }: MarkDownPreviewProps) {
+  return (
+    <ReactMarkdown
+      plugins={[[gfm, { singleTilde: false }]]}
+      renderers={renderers}
+      children={str}
+    />
+  );
+}
 
 export default MarkDownPreview;

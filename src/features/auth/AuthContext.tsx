@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery, useQueryClient } from "react-query";
 import * as auth from "./auth";
-import { AuthUser, AppUserContext } from "./auth.types";
+import { AppUserContext, AuthContextData } from "./auth.types";
 import { Flex, Text } from "@chakra-ui/react";
 
 export const AuthContext = React.createContext<AppUserContext | undefined>(
@@ -11,13 +11,12 @@ export const AuthContext = React.createContext<AppUserContext | undefined>(
 export const AuthConsumer = AuthContext.Consumer;
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const authState = useQuery<AuthUser, Error>(
+  const authState = useQuery<AuthContextData, Error>(
     auth.authQueryKey,
     auth.getAuthUserData,
     {
       retry: 0,
-      staleTime: 1000 * 60 * 5,
-      refetchOnWindowFocus: true,
+      staleTime: 1000 * 60 * 60 * 10,
     }
   );
 

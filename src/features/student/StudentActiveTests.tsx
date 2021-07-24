@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import profile from "images/user-profile.png";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "auth/AuthContext";
+import { useAuth } from "features/auth/AuthContext";
 import Header from "./Header";
 import TestCardList, { TestCardListGrid } from "tests/TestCardList";
 
@@ -27,7 +27,7 @@ function Index() {
           <Stack spacing={10}>
             <Center>
               <Image
-                src={profile}
+                src={user?.avatar}
                 w="3xs"
                 h="3xs"
                 borderWidth={1}
@@ -39,7 +39,7 @@ function Index() {
               <Text fontSize="lg" fontWeight="bold">
                 {user?.name}
               </Text>
-              <Text>{user?.username}</Text>
+              <Text>{user?.matricNumber}</Text>
               <Text>{user?.department}</Text>
               <Text>{user?.level}</Text>
             </Flex>

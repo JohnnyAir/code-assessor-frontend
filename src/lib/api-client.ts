@@ -1,6 +1,6 @@
 import { createErrorFromApiResponse, createNetworkError } from "./error";
 
-const apiURL = process.env.REACT_APP_API_URL || "";
+const apiURL = process.env.REACT_APP_BASE_API_URL;
 
 interface ApiResponse<T> {
   data: T | Record<string, any> | null;
@@ -12,13 +12,13 @@ interface ApiResponse<T> {
 type ApiClient = <T>(
   url: string,
   options?: RequestInit
-) => Promise<ApiResponse<T>>;
+) => Promise<T>;
 
 export const client: ApiClient = async (url, options = {}) => {
+  console.log(process.env)
   const { headers, ...config } = options;
   try {
     const response = await fetch(`${apiURL}${url}`, {
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...(headers || {}),
@@ -43,7 +43,7 @@ type ApiClientPost = <T>(
   url: string,
   data: string | Record<string, any>,
   options?: RequestInit
-) => Promise<ApiResponse<T>>;
+) => Promise<T>;
 
 export const apiPost: ApiClientPost = async (url, data, options = {}) => {
   let body = data && typeof data === "object" ? JSON.stringify(data) : data;

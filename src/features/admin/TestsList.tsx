@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Heading, Button, Icon } from "@chakra-ui/react";
-import TestsCardList from "../tests/TestCardList";
+import TestsCardList from "../../tests/TestCardList";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
 interface Props {}

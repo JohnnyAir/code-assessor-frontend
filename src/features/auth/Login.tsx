@@ -9,10 +9,10 @@ import {
   AlertDescription,
   AlertIcon,
 } from "@chakra-ui/react";
-import logo from "../images/logo.png";
+import logo from "images/logo.png";
 import { useAuth } from "./AuthContext";
 import { Formik } from "formik";
-import { FormField } from "components/Form";
+import { FormField } from "../shared/components/Form";
 import { LoginRequest } from "./auth.types";
 
 function Login() {
@@ -42,9 +42,10 @@ function LoginForm(props: LoginFormProps) {
         username: "",
         password: "",
       }}
-      onSubmit={(data, { setStatus }) => {
+      onSubmit={(data, { setStatus, setSubmitting }) => {
         props.login(data).catch((error) => {
           setStatus(error.message);
+          setSubmitting(false);
         });
       }}
     >
@@ -66,6 +67,7 @@ function LoginForm(props: LoginFormProps) {
             <FormField
               size="lg"
               name="password"
+              type="password"
               placeholder="Your Password"
               label="Password"
             />

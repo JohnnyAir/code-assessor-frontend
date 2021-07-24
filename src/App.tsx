@@ -2,12 +2,12 @@ import React from "react";
 import { ChakraProvider, Flex, Text } from "@chakra-ui/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { AuthProvider, useAuth } from "./auth/AuthContext";
+import { AuthProvider, useAuth } from "features/auth/AuthContext";
 import theme from "./theme";
 
-const Student = React.lazy(() => import("student"));
-const Admin = React.lazy(() => import("admin"));
-const Login = React.lazy(() => import("auth/Login"));
+const Student = React.lazy(() => import("features/student"));
+const Admin = React.lazy(() => import("features/admin"));
+const Login = React.lazy(() => import("features/auth/Login"));
 
 const queryClient = new QueryClient();
 
